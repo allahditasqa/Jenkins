@@ -1,0 +1,14 @@
+name: Validate Jenkins setup
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compose file is valid
+        run: docker compose config -q
+      - name: Jenkins image builds (plugins install)
+        run: docker compose build
