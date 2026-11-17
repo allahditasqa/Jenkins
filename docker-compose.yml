@@ -1,0 +1,13 @@
+# Local Jenkins for trying the Jenkinsfile. Linux/macOS (or Docker Desktop with WSL2).
+services:
+  jenkins:
+    build: ./jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: root            # lets the container use the host Docker socket (local demo only)
+
+volumes:
+  jenkins_home:
